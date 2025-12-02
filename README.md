@@ -172,6 +172,11 @@ Resultat:
 
 ```bash
 mxpy contract call <contract> --pem=wallet.pem --proxy=https://devnet-gateway.multiversx.com \
+  --function set_limit --arguments <limit> --gas-limit 15000000 --send
+```
+
+```bash
+mxpy contract call erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf --pem=wallet.pem --proxy=https://devnet-gateway.multiversx.com \
   --function set_limit --arguments 20000000000000000000 --gas-limit 15000000 --send
 ```
 
@@ -193,13 +198,18 @@ Resultat:
 
 ```bash
 mxpy contract call <contract> --pem=wallet.pem --proxy=https://devnet-gateway.multiversx.com \
+  --function set_limit_per_donor --arguments <limit_per_donor> --gas-limit 15000000 --send
+```
+
+```bash
+mxpy contract call erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf --pem=wallet.pem --proxy=https://devnet-gateway.multiversx.com \
   --function set_limit_per_donor --arguments 1000000000000000000 --gas-limit 15000000 --send
 ```
 
 Consulta:
 
 ```bash
-mxpy contract query <contract> --function getLimit_per_donor --proxy https://devnet-api.multiversx.com
+mxpy contract query erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf --function getLimit_per_donor --proxy https://devnet-api.multiversx.com
 ```
 
 Resultat:
@@ -214,13 +224,19 @@ Resultat:
 
 ```bash
 mxpy contract call <contract> --pem=wallet.pem --proxy=https://devnet-gateway.multiversx.com \
+  --function set_minimum_per_donation --arguments <minimum_per_donation> --gas-limit 15000000 --send
+```
+
+```bash
+mxpy contract call erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf --pem=wallet.pem --proxy=https://devnet-gateway.multiversx.com \
   --function set_minimum_per_donation --arguments 100000000000000000 --gas-limit 15000000 --send
 ```
+
 
 Consulta:
 
 ```bash
-mxpy contract query <contract> --function getMinimum_per_donation --proxy https://devnet-api.multiversx.com
+mxpy contract query erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf --function getMinimum_per_donation --proxy https://devnet-api.multiversx.com
 ```
 
 Resultat:
@@ -236,7 +252,7 @@ Resultat:
 Intentem donar menys del mínim:
 
 ```bash
-mxpy contract call <contract> --pem=wallet.pem --function fund \
+mxpy contract call erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf --pem=wallet.pem --function fund \
   --value 10000000000000000 --gas-limit 15000000 --send
 ```
 
@@ -251,7 +267,7 @@ Error -> Cannot accept donations below the minimum contribution limit
 Donació correcta:
 
 ```bash
-mxpy contract call <contract> --pem=wallet.pem --function fund \
+mxpy contract call erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf --pem=wallet.pem --function fund \
   --value 200000000000000000 --gas-limit 15000000 --send
 ```
 
@@ -266,7 +282,7 @@ Ok
 Intentem superar el límit per donant:
 
 ```bash
-mxpy contract call <contract> --pem=wallet.pem --function fund \
+mxpy contract call erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf --pem=wallet.pem --function fund \
   --value 3000000000000000000 --gas-limit 15000000 --send
 ```
 
