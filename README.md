@@ -128,16 +128,6 @@ Retorna l’estat de la campanya segons:
 
 @TODO
 
-## 📁 Estructura del projecte
-
-```
-/src
-  └── contract.rs   # Lògica del smart contract
-/tests              # Tests (opcional)
-multiversx.json     # Configuració del projecte
-README.md
-```
-
 ---
 
 ## 📜 Llicència
