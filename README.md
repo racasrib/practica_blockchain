@@ -128,6 +128,34 @@ Retorna l’estat de la campanya segons:
 
 @TODO
 
+mxpy contract deploy --bytecode crowdfunding.wasm --proxy=https://devnet-gateway.multiversx.com --arguments 10000000000000000000 1764547200 --gas-limit 15000000 --pem=wallet.pem --send
+
+owner: erd1kx5rh2usj47t4a87nhqgkm0mvczj9jemw2l0jjtdtqnexwxv03msdr4dld
+adreça del contracte: erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf
+
+mxpy contract query erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf --function getDeadline --proxy https://devnet-api.multiversx.com
+"6938a9f0"
+
+
+Afegim i verifiquem els límits
+mxpy contract call erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf --pem=wallet.pem --proxy=https://devnet-gateway.multiversx.com --function set_limit --arguments 20000000000000000000 --gas-limit 15000000 --send
+mxpy contract query erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf --function getLimit --proxy https://devnet-api.multiversx.com
+"01158e460913d00000"
+
+
+mxpy contract call erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf --pem=wallet.pem --proxy=https://devnet-gateway.multiversx.com --function set_limit_per_donor --arguments 1000000000000000000 --gas-limit 15000000 --send
+mxpy contract query erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf --function getLimit_per_donor --proxy https://devnet-api.multiversx.com
+"0de0b6b3a7640000"
+
+mxpy contract call erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf --pem=wallet.pem --proxy=https://devnet-gateway.multiversx.com --function set_minimum_per_donation --arguments 100000000000000000 --gas-limit 15000000 --send
+mxpy contract query erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf --function getMinimum_per_donation --proxy https://devnet-api.multiversx.com
+"016345785d8a0000"
+
+Podem fer donatius i verificar els errors
+
+
+
+
 ---
 
 ## 📜 Llicència
