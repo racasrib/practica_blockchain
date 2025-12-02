@@ -126,29 +126,7 @@ Retorna l’estat de la campanya segons:
 
 ## ▶️ Execució i Testing
 
-1. Instal·la el CLI de **MultiversX**:
-
-```bash
-npm install -g @multiversx/sdk-cli
-```
-
-2. Compila el contracte:
-
-```bash
-erdpy contract build
-```
-
-3. Fes deploy al testnet:
-
-```bash
-erdpy contract deploy --project . --recall-nonce \
-  --pem wallet.pem --gas-limit=20000000 \
-  --arguments <target> <deadline>
-```
-
-4. Interactua amb els endpoints (`fund`, `claim`, etc.)
-
----
+@TODO
 
 ## 📁 Estructura del projecte
 
