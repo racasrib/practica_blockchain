@@ -126,35 +126,155 @@ Retorna l’estat de la campanya segons:
 
 ## ▶️ Execució i Testing
 
-@TODO
+Perfecte — aquí tens la **mateixa documentació**, igual de senzilla, però **ben ordenada, clara i agradable de llegir**, sense afegir complexitat extra:
 
-mxpy contract deploy --bytecode crowdfunding.wasm --proxy=https://devnet-gateway.multiversx.com --arguments 10000000000000000000 1764547200 --gas-limit 15000000 --pem=wallet.pem --send
+---
 
-owner: erd1kx5rh2usj47t4a87nhqgkm0mvczj9jemw2l0jjtdtqnexwxv03msdr4dld
-adreça del contracte: erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf
+## ▶️ Execució i Testing
 
-mxpy contract query erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf --function getDeadline --proxy https://devnet-api.multiversx.com
+### **Fem el deployment**
+
+```bash
+mxpy contract deploy \
+  --bytecode crowdfunding.wasm \
+  --proxy=https://devnet-gateway.multiversx.com \
+  --arguments 10000000000000000000 1764547200 \
+  --gas-limit 15000000 \
+  --pem=wallet.pem \
+  --send
+```
+
+**Owner:**
+`erd1kx5rh2usj47t4a87nhqgkm0mvczj9jemw2l0jjtdtqnexwxv03msdr4dld`
+
+**Adreça del contracte:**
+`erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf`
+
+**Consulta del deadline:**
+
+```bash
+mxpy contract query erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf \
+  --function getDeadline \
+  --proxy https://devnet-api.multiversx.com
+```
+
+Resultat:
+
+```
 "6938a9f0"
+```
 
+---
 
-Afegim i verifiquem els límits
-mxpy contract call erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf --pem=wallet.pem --proxy=https://devnet-gateway.multiversx.com --function set_limit --arguments 20000000000000000000 --gas-limit 15000000 --send
-mxpy contract query erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf --function getLimit --proxy https://devnet-api.multiversx.com
+### **Afegim i verifiquem els límits**
+
+**Límit global:**
+
+```bash
+mxpy contract call <contract> --pem=wallet.pem --proxy=https://devnet-gateway.multiversx.com \
+  --function set_limit --arguments 20000000000000000000 --gas-limit 15000000 --send
+```
+
+Consulta:
+
+```bash
+mxpy contract query <contract> --function getLimit --proxy https://devnet-api.multiversx.com
+```
+
+Resultat:
+
+```
 "01158e460913d00000"
+```
 
+---
 
-mxpy contract call erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf --pem=wallet.pem --proxy=https://devnet-gateway.multiversx.com --function set_limit_per_donor --arguments 1000000000000000000 --gas-limit 15000000 --send
-mxpy contract query erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf --function getLimit_per_donor --proxy https://devnet-api.multiversx.com
+**Límit per donant:**
+
+```bash
+mxpy contract call <contract> --pem=wallet.pem --proxy=https://devnet-gateway.multiversx.com \
+  --function set_limit_per_donor --arguments 1000000000000000000 --gas-limit 15000000 --send
+```
+
+Consulta:
+
+```bash
+mxpy contract query <contract> --function getLimit_per_donor --proxy https://devnet-api.multiversx.com
+```
+
+Resultat:
+
+```
 "0de0b6b3a7640000"
+```
 
-mxpy contract call erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf --pem=wallet.pem --proxy=https://devnet-gateway.multiversx.com --function set_minimum_per_donation --arguments 100000000000000000 --gas-limit 15000000 --send
-mxpy contract query erd1qqqqqqqqqqqqqpgq2klz9lhmzn6v7y535myzwxg5nq4calx203msdkwsjf --function getMinimum_per_donation --proxy https://devnet-api.multiversx.com
+---
+
+**Donació mínima:**
+
+```bash
+mxpy contract call <contract> --pem=wallet.pem --proxy=https://devnet-gateway.multiversx.com \
+  --function set_minimum_per_donation --arguments 100000000000000000 --gas-limit 15000000 --send
+```
+
+Consulta:
+
+```bash
+mxpy contract query <contract> --function getMinimum_per_donation --proxy https://devnet-api.multiversx.com
+```
+
+Resultat:
+
+```
 "016345785d8a0000"
+```
 
-Podem fer donatius i verificar els errors
+---
 
+### **Podem fer donatius i verificar errors**
 
+Intentem donar menys del mínim:
 
+```bash
+mxpy contract call <contract> --pem=wallet.pem --function fund \
+  --value 10000000000000000 --gas-limit 15000000 --send
+```
+
+Resultat:
+
+```
+Error -> Cannot accept donations below the minimum contribution limit
+```
+
+---
+
+Donació correcta:
+
+```bash
+mxpy contract call <contract> --pem=wallet.pem --function fund \
+  --value 200000000000000000 --gas-limit 15000000 --send
+```
+
+Resultat:
+
+```
+Ok
+```
+
+---
+
+Intentem superar el límit per donant:
+
+```bash
+mxpy contract call <contract> --pem=wallet.pem --function fund \
+  --value 3000000000000000000 --gas-limit 15000000 --send
+```
+
+Resultat:
+
+```
+Error -> Cannot exceed the maximum contribution limit per donor
+```
 
 ---
 
