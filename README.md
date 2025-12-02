@@ -6,7 +6,8 @@ Lliurament de la pràctica del curs de Blockchain a l'FP de l'ICE de la URV
 # 🧱 Crowdfunding Smart Contract (MultiversX)
 
 Aquest repositori conté un Smart Contract escrit en Rust i basat en el framework **MultiversX Smart Contracts**.
-El contracte implementa un sistema de **micromecenatge (crowdfunding)** amb control total sobre límits, dates i retorns automàtics, completada a partir de la plantilla de crowdfunding facilitada en el curs.
+
+El contracte implementa un sistema de **micromecenatge (crowdfunding)** amb control total sobre límits, dates i retorns automàtics, a partir de la plantilla de crowdfunding facilitada en el curs.
 
 ---
 
