@@ -19,9 +19,9 @@ El contracte implementa un sistema de **micromecenatge (crowdfunding)** amb cont
 * **Aportacions en EGLD** mitjançant l'endpoint `fund`
 * **Límits configurables**:
 
-  * Límits globals
-  * Límits per donant
-  * Donació mínima
+  * Límits globals (`limit`)
+  * Límits per donant (`limit_per_donor`)
+  * Donació mínima (`minimum_per_donation`)
 * **Sistema d'estats automàtic**:
 
   * `FundingPeriod`
